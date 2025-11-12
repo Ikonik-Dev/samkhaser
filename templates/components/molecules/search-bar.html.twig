@@ -1,0 +1,34 @@
+{#
+  Search Bar molecule component
+  
+  Props:
+  - placeholder: search placeholder text
+  - action: form action URL
+  - method: form method (default: GET)
+  - name: input name (default: 'q')
+  - value: current search value
+#}
+
+{% set placeholder = placeholder|default('Rechercher...') %}
+{% set method = method|default('GET') %}
+{% set name = name|default('q') %}
+{% set action = action|default('') %}
+{% set value = value|default('') %}
+
+<form class="search-bar" method="{{ method }}" {% if action %} action="{{ action }}" {% endif %}>
+	<div class="input-group">
+		{% include 'components/atoms/input.html.twig' with {
+      type: 'search',
+      name: name,
+      placeholder: placeholder,
+      value: value,
+      class: 'border-end-0'
+    } %}
+
+		<div class="input-group-text bg-white border-start-0">
+			<svg width="16" height="16" fill="currentColor" class="text-muted">
+				<use href="#search"></use>
+			</svg>
+		</div>
+	</div>
+</form>

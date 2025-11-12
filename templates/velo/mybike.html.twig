@@ -1,0 +1,110 @@
+{% extends 'layouts/ecommerce.html.twig' %}
+
+{% block title %}Mon Vélo - SamKhaser
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		{% if myBike %}
+			<div class="row">
+				<div class="col-md-6">
+					{% if myBike.imageUrl %}
+						<img src="{{ myBike.imageUrl }}" class="img-fluid rounded" alt="{{ myBike.marque }} {{ myBike.modele }}">
+					{% else %}
+						<div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 400px;">
+							<svg width="64" height="64" fill="currentColor" class="text-muted">
+								<use href="#bicycle"></use>
+							</svg>
+						</div>
+					{% endif %}
+				</div>
+				<div class="col-md-6">
+					<h1>{{ myBike.marque }}
+						{{ myBike.modele }}</h1>
+
+					<div class="mb-3">
+						{% include 'components/atoms/badge.html.twig' with {
+                        type: 'secondary',
+                        content: myBike.type
+                    } %}
+						{% include 'components/atoms/badge.html.twig' with {
+                        type: 'info',
+                        content: myBike.genre
+                    } %}
+						{% include 'components/atoms/badge.html.twig' with {
+                        type: 'warning',
+                        content: 'Taille ' ~ myBike.taille
+                    } %}
+					</div>
+
+					<ul class="list-unstyled">
+						<li>
+							<strong>Marque:</strong>
+							{{ myBike.marque }}</li>
+						<li>
+							<strong>Modèle:</strong>
+							{{ myBike.modele }}</li>
+						<li>
+							<strong>Type:</strong>
+							{{ myBike.type }}</li>
+						<li>
+							<strong>Taille:</strong>
+							{{ myBike.taille }}</li>
+						<li>
+							<strong>Genre:</strong>
+							{{ myBike.genre }}</li>
+						{% if myBike.couleur %}
+							<li>
+								<strong>Couleur:</strong>
+								{{ myBike.couleur }}</li>
+						{% endif %}
+						<li>
+							<strong>Stock disponible:</strong>
+							{{ myBike.stock }}
+							unités</li>
+					</ul>
+
+					<div class="mb-3">
+						{% include 'components/molecules/price-display.html.twig' with {
+                        price: myBike.prix,
+                        sale_price: myBike.estEnPromotion ? myBike.prixPromotion : null,
+                        size: 'lg'
+                    } %}
+					</div>
+
+					{% if myBike.description %}
+						<p class="lead">{{ myBike.description }}</p>
+					{% endif %}
+
+					<p class="text-muted">
+						<small>Ajouté le
+							{{ myBike.dateAjout|date('d/m/Y à H:i') }}</small>
+					</p>
+
+					<div class="d-flex gap-2">
+						{% include 'components/atoms/button.html.twig' with {
+                        content: '<svg width="16" height="16" fill="currentColor" class="me-1"><use href="#cart-plus"></use></svg> Ajouter au panier',
+                        type: 'primary',
+                        size: 'lg'
+                    } %}
+
+						{% include 'components/atoms/button.html.twig' with {
+                        content: 'Voir tous les vélos',
+                        type: 'outline',
+                        tag: 'a',
+                        href: path('app_velo')
+                    } %}
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="alert alert-warning">
+				<h4>Aucun vélo trouvé</h4>
+				<p>Assurez-vous d'avoir exécuté les fixtures avec
+					<code>php bin/console doctrine:fixtures:load</code>
+				</p>
+				<a href="{{ path('app_velo') }}" class="btn btn-primary">Voir tous les vélos</a>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

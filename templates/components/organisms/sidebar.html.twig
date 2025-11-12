@@ -1,0 +1,123 @@
+{#
+  Sidebar Navigation organism component
+  
+  Props:
+  - menu_items: array of navigation items
+  - current_route: current route name for active state
+#}
+
+<nav id="sidebar" class="sidebar">
+	<div class="sidebar-header">
+		<h4 class="sidebar-brand">
+			<svg width="24" height="24" fill="currentColor" class="me-2">
+				<use href="#bicycle"></use>
+			</svg>
+			SamKhaser
+		</h4>
+	</div>
+
+	<div
+		class="sidebar-content">
+		<!-- Search in sidebar -->
+		<div class="sidebar-search mb-3">
+			{% include 'components/molecules/search-bar.html.twig' with {
+        placeholder: 'Rechercher...',
+        name: 'search'
+      } %}
+		</div>
+
+		<!-- Main Navigation -->
+		<ul class="sidebar-nav">
+			<li class="nav-item">
+				<a href="{{ path('app_velo') }}" class="nav-link {{ current_route == 'app_velo' ? 'active' : '' }}">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#grid"></use>
+					</svg>
+					<span class="nav-text">Tous les vélos</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="{{ path('app_mybike') }}" class="nav-link {{ current_route == 'app_mybike' ? 'active' : '' }}">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#heart"></use>
+					</svg>
+					<span class="nav-text">Mon vélo</span>
+				</a>
+			</li>
+
+			<li class="nav-divider"></li>
+
+			<!-- Categories -->
+			<li class="nav-header">
+				<span class="nav-text">Catégories</span>
+			</li>
+
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#mountain"></use>
+					</svg>
+					<span class="nav-text">VTT</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#road"></use>
+					</svg>
+					<span class="nav-text">Route</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#city"></use>
+					</svg>
+					<span class="nav-text">VTC</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#electric"></use>
+					</svg>
+					<span class="nav-text">Électrique</span>
+				</a>
+			</li>
+
+			<li class="nav-divider"></li>
+
+			<!-- Account -->
+			<li class="nav-header">
+				<span class="nav-text">Compte</span>
+			</li>
+
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#person"></use>
+					</svg>
+					<span class="nav-text">Mon compte</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<svg width="20" height="20" fill="currentColor" class="me-2">
+						<use href="#cart"></use>
+					</svg>
+					<span class="nav-text">Panier</span>
+					{% include 'components/atoms/badge.html.twig' with {
+            type: 'danger',
+            content: '3',
+            class: 'ms-auto'
+          } %}
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,133 @@
+{% extends 'layouts/ecommerce.html.twig' %}
+
+{% block title %}
+	{{ velo.marque }}
+	{{ velo.modele }}
+	- SamKhaser
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<nav aria-label="breadcrumb" class="mb-4">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{{ path('app_velo') }}" class="text-decoration-none">Vélos</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">
+					{{ velo.marque }}
+					{{ velo.modele }}
+				</li>
+			</ol>
+		</nav>
+
+		<div class="row">
+			<div class="col-md-6">
+				{% if velo.imageUrl %}
+					<img src="{{ velo.imageUrl }}" class="img-fluid rounded" alt="{{ velo.marque }} {{ velo.modele }}">
+				{% else %}
+					<div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 400px;">
+						<svg width="64" height="64" fill="currentColor" class="text-muted">
+							<use href="#bicycle"></use>
+						</svg>
+					</div>
+				{% endif %}
+			</div>
+
+			<div class="col-md-6">
+				<h1>{{ velo.marque }}
+					{{ velo.modele }}</h1>
+
+				<div class="mb-3">
+					{% include 'components/atoms/badge.html.twig' with {
+                    type: 'secondary',
+                    content: velo.type
+                } %}
+					{% include 'components/atoms/badge.html.twig' with {
+                    type: 'info',
+                    content: velo.genre
+                } %}
+					{% include 'components/atoms/badge.html.twig' with {
+                    type: 'warning',
+                    content: 'Taille ' ~ velo.taille
+                } %}
+				</div>
+
+				{% include 'components/molecules/price-display.html.twig' with {
+                price: velo.prix,
+                sale_price: velo.estEnPromotion ? velo.prixPromotion : null,
+                size: 'lg'
+            } %}
+
+				{% if velo.description %}
+					<div class="my-4">
+						<h5>Description</h5>
+						<p>{{ velo.description }}</p>
+					</div>
+				{% endif %}
+
+				<div class="my-4">
+					<h5>Caractéristiques</h5>
+					<ul class="list-unstyled">
+						<li>
+							<strong>Marque:</strong>
+							{{ velo.marque }}</li>
+						<li>
+							<strong>Modèle:</strong>
+							{{ velo.modele }}</li>
+						<li>
+							<strong>Type:</strong>
+							{{ velo.type }}</li>
+						<li>
+							<strong>Taille:</strong>
+							{{ velo.taille }}</li>
+						<li>
+							<strong>Genre:</strong>
+							{{ velo.genre }}</li>
+						{% if velo.couleur %}
+							<li>
+								<strong>Couleur:</strong>
+								{{ velo.couleur }}</li>
+						{% endif %}
+						<li>
+							<strong>Stock:</strong>
+							{% if velo.stock > 0 %}
+								<span class="text-success">{{ velo.stock }}
+									en stock</span>
+							{% else %}
+								<span class="text-danger">Rupture de stock</span>
+							{% endif %}
+						</li>
+					</ul>
+				</div>
+
+				<div class="d-flex gap-2 mb-4">
+					{% if velo.stock > 0 %}
+						{% include 'components/atoms/button.html.twig' with {
+                        content: '<svg width="16" height="16" fill="currentColor" class="me-1"><use href="#cart-plus"></use></svg> Ajouter au panier',
+                        type: 'primary',
+                        size: 'lg'
+                    } %}
+					{% else %}
+						{% include 'components/atoms/button.html.twig' with {
+                        content: 'Rupture de stock',
+                        type: 'secondary',
+                        size: 'lg',
+                        attributes: 'disabled'
+                    } %}
+					{% endif %}
+
+					{% include 'components/atoms/button.html.twig' with {
+                    content: '<svg width="16" height="16" fill="currentColor" class="me-1"><use href="#heart"></use></svg> Favoris',
+                    type: 'outline'
+                } %}
+				</div>
+
+				<p class="text-muted">
+					<small>Référence: VLO-{{ velo.id|str_pad(4, '0') }}
+						| Ajouté le
+						{{ velo.dateAjout|date('d/m/Y') }}</small>
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

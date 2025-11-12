@@ -1,0 +1,18 @@
+{#
+  Badge atom component
+  
+  Props:
+  - type: 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark' (default: 'primary')
+  - class: additional CSS classes
+#}
+
+{% set type = type|default('primary') %}
+{% set class = class|default('') %}
+
+{% set badge_classes = [
+  'badge',
+  'bg-' ~ type,
+  class
+]|join(' ')|trim %}
+
+<span class="{{ badge_classes }}">{{ content|raw }}</span>

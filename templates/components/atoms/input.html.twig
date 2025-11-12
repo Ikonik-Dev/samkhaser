@@ -1,0 +1,31 @@
+{#
+  Input atom component
+  
+  Props:
+  - type: 'text', 'email', 'password', 'number', 'search' (default: 'text')
+  - name: input name attribute
+  - id: input id attribute
+  - placeholder: placeholder text
+  - value: input value
+  - class: additional CSS classes
+  - attributes: additional HTML attributes
+  - required: boolean
+  - disabled: boolean
+#}
+
+{% set type = type|default('text') %}
+{% set class = class|default('') %}
+{% set name = name|default('') %}
+{% set id = id|default('') %}
+{% set placeholder = placeholder|default('') %}
+{% set value = value|default('') %}
+{% set required = required|default(false) %}
+{% set disabled = disabled|default(false) %}
+{% set attributes = attributes|default('') %}
+
+{% set input_classes = [
+  'form-control',
+  class
+]|join(' ')|trim %}
+
+<input type="{{ type }}" {% if name %} name="{{ name }}" {% endif %} {% if id %} id="{{ id }}" {% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {% if value %} value="{{ value }}" {% endif %} class="{{ input_classes }}" {% if required %} required {% endif %} {% if disabled %} disabled {% endif %} {{ attributes|raw }}>

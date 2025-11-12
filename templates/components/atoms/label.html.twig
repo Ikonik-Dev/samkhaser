@@ -1,0 +1,22 @@
+{#
+  Label atom component
+  
+  Props:
+  - for: input id this label is for
+  - class: additional CSS classes
+  - required: boolean to show required indicator
+#}
+
+{% set class = class|default('') %}
+
+{% set label_classes = [
+  'form-label',
+  class
+]|join(' ')|trim %}
+
+<label {% if for %} for="{{ for }}" {% endif %} class="{{ label_classes }}">
+	{{ content|raw }}
+	{% if required %}
+		<span class="text-danger">*</span>
+	{% endif %}
+</label>

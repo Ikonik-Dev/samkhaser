@@ -1,0 +1,45 @@
+{#
+  Card molecule component
+  
+  Props:
+  - class: additional CSS classes
+  - header: card header content
+  - footer: card footer content
+  - image: image URL for card image
+  - image_alt: alt text for image
+#}
+
+{% set class = class|default('') %}
+{% set header = header|default('') %}
+{% set footer = footer|default('') %}
+{% set image = image|default('') %}
+{% set image_alt = image_alt|default('') %}
+{% set content = content|default('') %}
+
+{% set card_classes = [
+  'card',
+  'h-100',
+  class
+]|join(' ')|trim %}
+
+<div class="{{ card_classes }}">
+	{% if image %}
+		<img src="{{ image }}" class="card-img-top" alt="{{ image_alt }}" style="height: 200px; object-fit: cover;">
+	{% endif %}
+
+	{% if header %}
+		<div class="card-header">
+			{{ header|raw }}
+		</div>
+	{% endif %}
+
+	<div class="card-body d-flex flex-column">
+		{{ content|raw }}
+	</div>
+
+	{% if footer %}
+		<div class="card-footer">
+			{{ footer|raw }}
+		</div>
+	{% endif %}
+</div>

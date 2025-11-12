@@ -1,0 +1,195 @@
+{# filepath: c:\laragon\www\samkhaser\templates\components\organisms\header.html.twig #}
+{#
+  Header Organism
+  
+  Props:
+  - title: page title to display
+  - show_search: whether to show search bar (default: false)
+  - user: current user object (optional)
+#}
+
+{% set title = title|default('SamKhaser') %}
+{% set show_search = show_search|default(false) %}
+{% set user = user|default(null) %}
+
+	<header class="header"> <div
+		class="header-content">
+		<!-- Sidebar Toggle -->
+		<button id="sidebarToggle" class="btn btn-outline-secondary me-3">
+			{% include 'components/atoms/icon.html.twig' with {
+                name: 'menu',
+                size: 20
+            } %}
+		</button>
+
+		<!-- Page Title -->
+		<h1 class="header-title mb-0 me-auto">{{ title }}</h1>
+
+		<!-- Search Bar (if enabled) -->
+		{% if show_search %}
+			<div class="me-3">
+				{% include 'components/molecules/search-bar.html.twig' with {
+                    placeholder: 'Rechercher des produits...',
+                    class: 'me-3'
+                } %}
+			</div>
+		{% endif %}
+
+		<!-- Header Actions -->
+		<div
+			class="header-actions">
+			<!-- Notifications -->
+			<button class="btn btn-outline-secondary me-2">
+				{% include 'components/atoms/icon.html.twig' with {
+                    name: 'bell',
+                    size: 18
+                } %}
+			</button>
+
+			<!-- User Menu -->
+			{% if user %}
+				<!-- User is logged in -->
+				<div class="dropdown">
+					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+						{% include 'components/atoms/icon.html.twig' with {
+                            name: 'person',
+                            size: 18
+                        } %}
+						<span class="ms-1">{{ user.name|default(user.email|default('Utilisateur')) }}</span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li>
+							<a class="dropdown-item" href="#">Mon profil</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Mes commandes</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Mes favoris</a>
+						</li>
+						<li><hr class="dropdown-divider"></li>
+						<li>
+							<a class="dropdown-item" href="#">Déconnexion</a>
+						</li>
+					</ul>
+				</div>
+			{% else %}
+				<!-- User is not logged in -->
+				<div class="d-flex gap-2">
+					{% include 'components/atoms/button.html.twig' with {
+                        content: 'Connexion',
+                        type: 'outline',
+                        size: 'sm',
+                        attributes: 'data-bs-toggle="modal" data-bs-target="#loginModal"'
+                    } %}
+
+					{% include 'components/atoms/button.html.twig' with {
+                        content: 'Inscription',
+                        type: 'primary',
+                        size: 'sm',
+                        attributes: 'data-bs-toggle="modal" data-bs-target="#registerModal"'
+                    } %}
+				</div>
+			{% endif %}
+
+			<!-- Shopping Cart -->
+			<button class="btn btn-primary ms-2 position-relative">
+				{% include 'components/atoms/icon.html.twig' with {
+                    name: 'cart',
+                    size: 18
+                } %}
+				<!-- Cart badge (placeholder) -->
+				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					3
+					<span class="visually-hidden">articles dans le panier</span>
+				</span>
+			</button>
+		</div>
+	</div>
+</header>
+
+<!-- Login Modal (placeholder) -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Connexion</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<form>
+					{% include 'components/molecules/form-field.html.twig' with {
+                        label: 'Email',
+                        type: 'email',
+                        name: 'email',
+                        required: true
+                    } %}
+
+					{% include 'components/molecules/form-field.html.twig' with {
+                        label: 'Mot de passe',
+                        type: 'password',
+                        name: 'password',
+                        required: true
+                    } %}
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+				{% include 'components/atoms/button.html.twig' with {
+                    content: 'Se connecter',
+                    type: 'primary'
+                } %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Register Modal (placeholder) -->
+<div class="modal fade" id="registerModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Inscription</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<form>
+					{% include 'components/molecules/form-field.html.twig' with {
+                        label: 'Nom complet',
+                        type: 'text',
+                        name: 'name',
+                        required: true
+                    } %}
+
+					{% include 'components/molecules/form-field.html.twig' with {
+                        label: 'Email',
+                        type: 'email',
+                        name: 'email',
+                        required: true
+                    } %}
+
+					{% include 'components/molecules/form-field.html.twig' with {
+                        label: 'Mot de passe',
+                        type: 'password',
+                        name: 'password',
+                        required: true
+                    } %}
+
+					{% include 'components/molecules/form-field.html.twig' with {
+                        label: 'Confirmer le mot de passe',
+                        type: 'password',
+                        name: 'password_confirm',
+                        required: true
+                    } %}
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+				{% include 'components/atoms/button.html.twig' with {
+                    content: 'S\'inscrire',
+                    type: 'primary'
+                } %}
+            </div>
+        </div>
+    </div>
+</div>

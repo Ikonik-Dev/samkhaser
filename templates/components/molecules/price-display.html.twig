@@ -1,0 +1,32 @@
+{#
+  Price Display molecule component
+  
+  Props:
+  - price: original price
+  - sale_price: sale price (optional)
+  - currency: currency symbol (default: '€')
+  - size: 'sm', 'md', 'lg' (default: 'md')
+#}
+
+{% set currency = currency|default('€') %}
+{% set size = size|default('md') %}
+
+{% set size_classes = {
+  'sm': 'fs-6',
+  'md': 'fs-5', 
+  'lg': 'fs-4'
+} %}
+
+<div class="price-display {{ size_classes[size] }}">
+	{% if sale_price %}
+		<span class="text-decoration-line-through text-muted me-2">{{ price }}{{ currency }}</span>
+		<span class="text-danger fw-bold">{{ sale_price }}{{ currency }}</span>
+		{% include 'components/atoms/badge.html.twig' with {
+      type: 'danger',
+      content: 'PROMO',
+      class: 'ms-2'
+    } %}
+	{% else %}
+		<span class="fw-bold text-success">{{ price }}{{ currency }}</span>
+	{% endif %}
+</div>

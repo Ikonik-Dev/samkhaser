@@ -1,0 +1,35 @@
+{#
+  Icon atom component
+  
+  Props:
+  - name: icon name (using Bootstrap Icons or custom)
+  - size: 'sm', 'md', 'lg' (default: 'md')
+  - class: additional CSS classes
+#}
+
+{% set name = name|default('') %}
+{% set size = size|default('md') %}
+{% set class = class|default('') %}
+{% set color = color|default('currentColor') %}
+
+{# Size presets mapping #}
+{% set size_presets = {
+    'xs': 12,
+    'sm': 16,
+    'md': 20,
+    'lg': 24,
+    'xl': 32
+} %}
+
+{# Determine final size - if numeric use as-is, if preset use mapping, fallback to md #}
+{% if size matches '/^[0-9]+$/' %}
+	{% set final_size = size %}
+{% elseif size_presets[size] is defined %}
+	{% set final_size = size_presets[size] %}
+{% else %}
+	{% set final_size = size_presets['md'] %}
+{% endif %}
+
+<svg width="{{ final_size }}" height="{{ final_size }}" fill="{{ color }}" {% if class %} class="{{ class }}" {% endif %}>
+	<use href="#{{ name }}"></use>
+</svg>

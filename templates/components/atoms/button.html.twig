@@ -1,0 +1,33 @@
+{#
+  Button atom component
+  
+  Props:
+  - type: 'primary', 'secondary', 'success', 'danger', 'outline' (default: 'primary')
+  - size: 'sm', 'md', 'lg' (default: 'md')
+  - tag: 'button', 'a' (default: 'button')
+  - href: URL for links
+  - class: additional CSS classes
+  - attributes: additional HTML attributes
+#}
+
+{% set type = type|default('primary') %}
+{% set size = size|default('md') %}
+{% set tag = tag|default('button') %}
+{% set class = class|default('') %}
+
+{% set button_classes = [
+  'btn',
+  'btn-' ~ type,
+  'btn-' ~ size,
+  class
+]|join(' ')|trim %}
+
+{% if tag == 'a' %}
+	<a href="{{ href|default('#') }}" class="{{ button_classes }}" {{ attributes|default('')|raw }}>
+		{{ content|raw }}
+	</a>
+{% else %}
+	<button type="{{ button_type|default('button') }}" class="{{ button_classes }}" {{ attributes|default('')|raw }}>
+		{{ content|raw }}
+	</button>
+{% endif %}
