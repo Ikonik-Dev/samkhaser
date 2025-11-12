@@ -1,5 +1,7 @@
 # TP Symfony - Création d'une Application de Gestion de Vélos
 
+🔗 **Repository GitHub** : [https://github.com/Ikonik-Dev/samkhaser.git](https://github.com/Ikonik-Dev/samkhaser.git)
+
 ## Objectifs pédagogiques
 
 À la fin de ce TP, vous saurez :
@@ -21,6 +23,22 @@
 -   Un serveur de base de données (MySQL/MariaDB recommandé pour ce TP)
 
 ---
+
+## Option A : Récupération du projet complet (pour analyse)
+
+Si vous souhaitez analyser le projet terminé avant de le refaire :
+
+```bash
+git clone https://github.com/Ikonik-Dev/samkhaser.git
+cd samkhaser
+composer install
+```
+
+Puis suivez les étapes d'installation dans le [README.md](README.md).
+
+---
+
+## Option B : Création du projet depuis zéro (recommandé pour l'apprentissage)
 
 ## Partie 1 : Création du projet et structure
 
@@ -908,6 +926,53 @@ php bin/console doctrine:mapping:info  # Infos entités
 5. **Injection de dépendances** : Symfony fournit automatiquement les services
 6. **Routes** : liaison URL ↔ méthodes de contrôleur
 7. **Repository** : couche d'accès aux données avec requêtes personnalisées
+
+---
+
+## Partie 11 : Publication sur GitHub
+
+### Étape 19 : Préparation du repository Git
+
+Si vous avez créé le projet depuis zéro, voici comment le publier sur GitHub :
+
+1. **Vérification de l'APP_SECRET**
+   
+   Assurez-vous que votre fichier `.env` contient un APP_SECRET généré :
+   ```bash
+   # Générer un secret aléatoire
+   php -r "echo bin2hex(random_bytes(16));"
+   ```
+   
+   Copiez le résultat dans votre fichier `.env` :
+   ```env
+   APP_SECRET=votre_secret_genere_ici
+   ```
+
+2. **Initialisation Git (si pas déjà fait)**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit: SamKhaser - Application de gestion de vélos"
+   ```
+
+3. **Ajout du repository distant**
+   ```bash
+   # Remplacez par votre propre repository GitHub
+   git remote add origin https://github.com/VotreNom/samkhaser.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+### Étape 20 : Création du README.md
+
+Créez un fichier `README.md` professionnel pour documenter votre projet. Consultez le README.md de ce repository pour un exemple complet.
+
+**📝 Points importants pour le README :**
+- Description du projet
+- Instructions d'installation
+- Structure du projet
+- Commandes utiles
+- URLs disponibles
 
 ---
 
