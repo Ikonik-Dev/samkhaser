@@ -936,43 +936,47 @@ php bin/console doctrine:mapping:info  # Infos entités
 Si vous avez créé le projet depuis zéro, voici comment le publier sur GitHub :
 
 1. **Vérification de l'APP_SECRET**
-   
-   Assurez-vous que votre fichier `.env` contient un APP_SECRET généré :
-   ```bash
-   # Générer un secret aléatoire
-   php -r "echo bin2hex(random_bytes(16));"
-   ```
-   
-   Copiez le résultat dans votre fichier `.env` :
-   ```env
-   APP_SECRET=votre_secret_genere_ici
-   ```
+
+    Assurez-vous que votre fichier `.env` contient un APP_SECRET généré :
+
+    ```bash
+    # Générer un secret aléatoire
+    php -r "echo bin2hex(random_bytes(16));"
+    ```
+
+    Copiez le résultat dans votre fichier `.env` :
+
+    ```env
+    APP_SECRET=votre_secret_genere_ici
+    ```
 
 2. **Initialisation Git (si pas déjà fait)**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: SamKhaser - Application de gestion de vélos"
-   ```
+
+    ```bash
+    git init
+    git add .
+    git commit -m "Initial commit: SamKhaser - Application de gestion de vélos"
+    ```
 
 3. **Ajout du repository distant**
-   ```bash
-   # Remplacez par votre propre repository GitHub
-   git remote add origin https://github.com/VotreNom/samkhaser.git
-   git branch -M main
-   git push -u origin main
-   ```
+    ```bash
+    # Remplacez par votre propre repository GitHub
+    git remote add origin https://github.com/VotreNom/samkhaser.git
+    git branch -M main
+    git push -u origin main
+    ```
 
 ### Étape 20 : Création du README.md
 
 Créez un fichier `README.md` professionnel pour documenter votre projet. Consultez le README.md de ce repository pour un exemple complet.
 
 **📝 Points importants pour le README :**
-- Description du projet
-- Instructions d'installation
-- Structure du projet
-- Commandes utiles
-- URLs disponibles
+
+-   Description du projet
+-   Instructions d'installation
+-   Structure du projet
+-   Commandes utiles
+-   URLs disponibles
 
 ---
 

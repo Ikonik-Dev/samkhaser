@@ -1,85 +1,97 @@
 # SamKhaser - Application de Gestion de Vélos
 
 ## Description
+
 SamKhaser est une application web de démonstration développée avec Symfony pour la gestion et l'affichage d'un catalogue de vélos. Ce projet sert d'exemple pédagogique pour apprendre les concepts fondamentaux de Symfony.
 
 ## Fonctionnalités
-- 📋 Affichage du catalogue complet des vélos
-- 🔍 Page de détail pour chaque vélo
-- 🚴 Page "Mon vélo" personnalisée
-- 🏷️ Gestion des promotions
-- 💾 Données de test via les fixtures Doctrine
+
+-   📋 Affichage du catalogue complet des vélos
+-   🔍 Page de détail pour chaque vélo
+-   🚴 Page "Mon vélo" personnalisée
+-   🏷️ Gestion des promotions
+-   💾 Données de test via les fixtures Doctrine
 
 ## Technologies utilisées
-- **Framework** : Symfony 7.3
-- **Base de données** : PostgreSQL (configurable)
-- **ORM** : Doctrine
-- **Templates** : Twig
-- **CSS** : Bootstrap 5.3
-- **PHP** : 8.2+
+
+-   **Framework** : Symfony 7.3
+-   **Base de données** : PostgreSQL (configurable)
+-   **ORM** : Doctrine
+-   **Templates** : Twig
+-   **CSS** : Bootstrap 5.3
+-   **PHP** : 8.2+
 
 ## Installation
 
 ### Prérequis
-- PHP 8.2 ou supérieur
-- Composer
-- PostgreSQL ou MySQL
-- Symfony CLI (recommandé)
+
+-   PHP 8.2 ou supérieur
+-   Composer
+-   PostgreSQL ou MySQL
+-   Symfony CLI (recommandé)
 
 ### Étapes d'installation
 
 1. **Cloner le repository**
-   ```bash
-   git clone https://github.com/Ikonik-Dev/samkhaser.git
-   cd samkhaser
-   ```
+
+    ```bash
+    git clone https://github.com/Ikonik-Dev/samkhaser.git
+    cd samkhaser
+    ```
 
 2. **Installer les dépendances**
-   ```bash
-   composer install
-   ```
+
+    ```bash
+    composer install
+    ```
 
 3. **Configurer la base de données**
-   
-   Copiez le fichier `.env` et adaptez la configuration :
-   ```bash
-   cp .env .env.local
-   ```
-   
-   Modifiez `DATABASE_URL` dans `.env.local` :
-   ```env
-   # Pour PostgreSQL
-   DATABASE_URL="postgresql://username:password@127.0.0.1:5432/samkhaser?serverVersion=16&charset=utf8"
-   
-   # Pour MySQL
-   DATABASE_URL="mysql://username:password@127.0.0.1:3306/samkhaser?serverVersion=8.0.32&charset=utf8mb4"
-   ```
+
+    Copiez le fichier `.env` et adaptez la configuration :
+
+    ```bash
+    cp .env .env.local
+    ```
+
+    Modifiez `DATABASE_URL` dans `.env.local` :
+
+    ```env
+    # Pour PostgreSQL
+    DATABASE_URL="postgresql://username:password@127.0.0.1:5432/samkhaser?serverVersion=16&charset=utf8"
+
+    # Pour MySQL
+    DATABASE_URL="mysql://username:password@127.0.0.1:3306/samkhaser?serverVersion=8.0.32&charset=utf8mb4"
+    ```
 
 4. **Créer la base de données**
-   ```bash
-   php bin/console doctrine:database:create
-   ```
+
+    ```bash
+    php bin/console doctrine:database:create
+    ```
 
 5. **Exécuter les migrations**
-   ```bash
-   php bin/console doctrine:migrations:migrate
-   ```
+
+    ```bash
+    php bin/console doctrine:migrations:migrate
+    ```
 
 6. **Charger les données de test**
-   ```bash
-   php bin/console doctrine:fixtures:load
-   ```
+
+    ```bash
+    php bin/console doctrine:fixtures:load
+    ```
 
 7. **Démarrer le serveur de développement**
-   ```bash
-   symfony server:start
-   # ou
-   php -S localhost:8000 -t public/
-   ```
+
+    ```bash
+    symfony server:start
+    # ou
+    php -S localhost:8000 -t public/
+    ```
 
 8. **Accéder à l'application**
-   
-   Ouvrez votre navigateur sur `http://localhost:8000`
+
+    Ouvrez votre navigateur sur `http://localhost:8000`
 
 ## Structure du projet
 
@@ -106,9 +118,9 @@ samkhaser/
 
 ## URLs disponibles
 
-- `/velo` - Catalogue complet des vélos
-- `/mybike` - Mon vélo (premier vélo de la base)
-- `/velo/{id}` - Détail d'un vélo spécifique
+-   `/velo` - Catalogue complet des vélos
+-   `/mybike` - Mon vélo (premier vélo de la base)
+-   `/velo/{id}` - Détail d'un vélo spécifique
 
 ## Entité Vélo
 
@@ -134,6 +146,7 @@ L'entité `Velo` contient les propriétés suivantes :
 ## Commandes utiles
 
 ### Doctrine
+
 ```bash
 # Créer une nouvelle entité
 php bin/console make:entity
@@ -149,6 +162,7 @@ php bin/console doctrine:fixtures:load
 ```
 
 ### Développement
+
 ```bash
 # Créer un contrôleur
 php bin/console make:controller

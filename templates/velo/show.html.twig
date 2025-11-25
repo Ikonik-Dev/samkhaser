@@ -123,7 +123,7 @@
 				</div>
 
 				<p class="text-muted">
-					<small>Référence: VLO-{{ velo.id|str_pad(4, '0') }}
+					<small>Référence: VLO-{{ '%04d'|format(velo.id) }}
 						| Ajouté le
 						{{ velo.dateAjout|date('d/m/Y') }}</small>
 				</p>
